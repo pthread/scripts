@@ -17,4 +17,17 @@ $make -j 2 TOOL_VERBOSE=1 >log.build_llvm 2>&1
 $make install
 
 
+Passes:
+$clang -O2 -mllvm -debug-pass=Structure -x c - < /dev/null 
+$clang -O3 -mllvm -debug-pass=Structure -x c - < /dev/null 
 
+Hello:
+$clang -emit-llvm dijkstra.c -c -o dijkstra.bc
+$lli dijjkstra.bc
+$opt -O2 -o dijkstra.O2.bc dijkstra.bc
+$llc -O2 -o dijkstra.S dijkstra.O2.bc
+$llc -O2 -o dijkstra.S dijkstra.O2.bc -file-type=obj
+
+PGO:
+../../llvm-3.3.src/utils/profile.pl dijkstra.O2.bc input.dat 
+http://lists.cs.uiuc.edu/pipermail/llvmdev/2012-April/049025.html
