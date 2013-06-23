@@ -1,0 +1,20 @@
+LLVM Scripts
+============
+
+How to build: 
+http://clang.llvm.org/get_started.html
+http://www.llvm.org/docs/GettingStarted.html
+
+1. LLVM:		$svn co http://llvm.org/svn/llvm-project/llvm/trunk trunk
+2. Compiler-RT: $cd trunk/projects & svn co http://llvm.org/svn/llvm-project/compiler-rt/trunk compiler-rt
+3. TestSuite:	$cd trunk/projects & svn co http://llvm.org/svn/llvm-project/test-suite/trunk test-suite
+4. Clang:		$cd trunk/tools & svn co http://llvm.org/svn/llvm-project/cfe/trunk clang
+5. extra Clang:	$cd trunk/tools/clang/tools & svn co http://llvm.org/svn/llvm-project/clang-tools-extra/trunk extra
+
+$mkdir build & cd build
+$../trunk/configure --prefix=/Users/pengyuan/compiler/llvm/usr --enable-targets=x86_64,arm,aarch64,cpp --disable-optimized
+$make -j 2 TOOL_VERBOSE=1 >log.build_llvm 2>&1
+$make install
+
+
+
